@@ -1,3 +1,5 @@
+import org.gradle.kotlin.dsl.accessors.runtime.addDependencyTo
+
 pluginManagement {
     repositories {
         google {
@@ -18,6 +20,7 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+
 
 rootProject.name = "CoroutineApp"
 include(":app")

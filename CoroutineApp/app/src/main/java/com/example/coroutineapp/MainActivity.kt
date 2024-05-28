@@ -9,10 +9,15 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.internal.synchronized
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
+@OptIn(InternalCoroutinesApi::class)
 class MainActivity : AppCompatActivity() {
     private lateinit var downlaod : Button
     private lateinit var count : Button
@@ -34,10 +39,12 @@ class MainActivity : AppCompatActivity() {
             CoroutineScope(Dispatchers.IO).launch { downloading() }
         }
     }
-    private fun downloading(){
+    private suspend fun downloading(){
         for(i in 1..100){
+            withContext(Dispatchers.Main){
             tv2.text = "${i.toString()}%"
-            Thread.sleep(300)
+            }
+            delay(200)
         }
     }
 }

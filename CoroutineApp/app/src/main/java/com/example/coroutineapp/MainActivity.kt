@@ -1,20 +1,25 @@
 package com.example.coroutineapp
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.InternalCoroutinesApi
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.internal.synchronized
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.Objects
 
 
 @OptIn(InternalCoroutinesApi::class)
@@ -34,9 +39,9 @@ class MainActivity : AppCompatActivity() {
         count.setOnClickListener{
           tv.text  = counter++.toString()
         }
-
+        var myJob = Job()
         downlaod.setOnClickListener {
-            CoroutineScope(Dispatchers.IO).launch { downloading() }
+            CoroutineScope(Dispatchers.IO + myJob).launch{ downloading() }
         }
     }
     private suspend fun downloading(){

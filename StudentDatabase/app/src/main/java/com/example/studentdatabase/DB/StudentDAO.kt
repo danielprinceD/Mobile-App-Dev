@@ -19,6 +19,4 @@ interface StudentDAO {
     @Delete
     suspend fun deleteData(student: Student)
 
-    @Query("select * from student")
-    suspend fun getAll() : LiveData<ArrayList<Student>>
 }

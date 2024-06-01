@@ -7,7 +7,9 @@ import com.example.studentdatabase.DB.Student
 import com.example.studentdatabase.DB.StudentDAO
 import kotlinx.coroutines.launch
 
-class StudentViewModel(val dao : StudentDAO) : ViewModel() {
+class StudentViewModel(private val dao : StudentDAO) : ViewModel() {
+
+    val students = dao.getAll()
     fun insertData(student : Student){
         viewModelScope.launch {
             dao.insertData(student)

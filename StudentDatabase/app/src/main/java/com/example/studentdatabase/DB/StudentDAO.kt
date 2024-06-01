@@ -19,4 +19,6 @@ interface StudentDAO {
     @Delete
     suspend fun deleteData(student: Student)
 
+    @Query("select * from Student")
+    fun getAll() : LiveData<List<Student>>
 }

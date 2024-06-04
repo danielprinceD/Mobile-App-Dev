@@ -9,7 +9,8 @@ import android.util.Log
 class MyService : Service() {
     override fun onBind(intent: Intent?): IBinder? = null
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        Log.i(TAG , "Service Started" )
+        val name = intent?.getStringExtra(NAME)
+        Log.i(TAG , "Service Started $name" )
         return START_STICKY
     }
 
@@ -21,5 +22,6 @@ class MyService : Service() {
 
     companion object {
         const val TAG = "MyService"
+        const val NAME = "NAME"
     }
 }

@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val serviceInstance = RetrofitInstance.getInstance().create(RetrofitService::class.java)
-        var liveData : LiveData<Response<Data>> = liveData {
+        val liveData : LiveData<Response<Data>> = liveData {
             val response  = serviceInstance.getItems()
             emit(response)
         }
@@ -27,7 +27,9 @@ class MainActivity : AppCompatActivity() {
             val items = it.body()?.listIterator()
             if(items!=null){
                 while(items.hasNext()){
-                    Log.i("MYTAG" , "${items.next().id} ${items.next().title} ${items.next().body}")
+                    val curr = items.next()
+                   val result : String = "${curr.id}. {  \n  id : ${curr.id} , \n\n title : ${curr.title} , \n\n body : ${curr.body} \n } \n\n"
+                    binding.textView.append(result)
                 }
             }
         })

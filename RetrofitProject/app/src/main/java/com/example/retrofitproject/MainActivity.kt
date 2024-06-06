@@ -1,5 +1,6 @@
 package com.example.retrofitproject
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -14,6 +15,15 @@ import com.example.retrofitproject.databinding.ActivityMainBinding
 import retrofit2.Response
 import kotlin.math.sin
 
+class Toaster{
+    companion object
+    {
+        fun toast( context : Context,text : String){
+            Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
+        }
+    }
+}
+
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,12 +31,16 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         getRequestFormService()
+
+
     }
     private fun getRequestFormService(){
         val serviceInstance = RetrofitInstance.getInstance().create(RetrofitService::class.java)
         val liveData : LiveData<Response<Data>> = liveData {
             val response  = serviceInstance.getItemsByUserId(2)
             emit(response)
+            val response2  = serviceInstance.getItemsByUserId(3)
+            emit(response2)
         }
 
         val singleData : LiveData<Response<DataItem>> = liveData{
@@ -35,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         }
         singleData.observe(this, Observer {
             val res = it.body()!!
-            Toast.makeText(this,"User -> ${res.userId} \n Body - > ${res.body}",Toast.LENGTH_SHORT).show()
+            Toaster.toast(this,"User -> ${res.userId} \n Body - > ${res.body}")
         })
 
         liveData.observe(this, Observer {

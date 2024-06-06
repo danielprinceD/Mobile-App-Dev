@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/navigation_graph">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/homePage">
 
+    <fragment
+        android:id="@+id/homePage"
+        android:name="com.example.navigationapp.HomePage"
+        android:label="fragment_home_page"
+        tools:layout="@layout/fragment_home_page" >
+        <action
+            android:id="@+id/action_homePage_to_passwordPage"
+            app:destination="@id/passwordPage" />
+    </fragment>
+    <fragment
+        android:id="@+id/passwordPage"
+        android:name="com.example.navigationapp.PasswordPage"
+        android:label="fragment_password_page"
+        tools:layout="@layout/fragment_password_page" >
+        <action
+            android:id="@+id/action_passwordPage_to_greetingPage"
+            app:destination="@id/greetingPage" />
+    </fragment>
+    <fragment
+        android:id="@+id/greetingPage"
+        android:name="com.example.navigationapp.GreetingPage"
+        android:label="fragment_greeting_page"
+        tools:layout="@layout/fragment_greeting_page" />
 </navigation>

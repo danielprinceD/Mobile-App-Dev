@@ -15,7 +15,9 @@ class PasswordPage : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentPasswordPageBinding.inflate(layoutInflater)
+        val user_name = requireArguments().getString("name_data")
         binding.apply {
+            name.text = user_name.toString()
             submit.setOnClickListener { passwordChecker(it) }
         }
         return binding.root

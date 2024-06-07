@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import com.example.navigationapp.databinding.ActivityMainBinding
 import com.example.navigationapp.databinding.FragmentHomePageBinding
@@ -25,7 +26,8 @@ class HomePage : Fragment() {
 
         next.setOnClickListener {
                 if(name.text.isNotEmpty()){
-                    it.findNavController().navigate(R.id.action_homePage_to_passwordPage)
+                    val bundle = bundleOf("name_data" to name.text.toString())
+                    it.findNavController().navigate(R.id.action_homePage_to_passwordPage, bundle)
                 }else
                 {
                     Toaster.toast(root.context,"Fill the Input Data")

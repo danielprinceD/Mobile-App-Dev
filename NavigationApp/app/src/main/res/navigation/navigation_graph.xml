@@ -12,7 +12,8 @@
         tools:layout="@layout/fragment_home_page" >
         <action
             android:id="@+id/action_homePage_to_passwordPage"
-            app:destination="@id/passwordPage" />
+            app:destination="@id/passwordPage"
+            app:enterAnim="@anim/slide_in_left" />
     </fragment>
     <fragment
         android:id="@+id/passwordPage"

@@ -13,7 +13,10 @@
         <action
             android:id="@+id/action_homePage_to_passwordPage"
             app:destination="@id/passwordPage"
-            app:enterAnim="@anim/slide_in_left" />
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/passwordPage"
@@ -22,7 +25,11 @@
         tools:layout="@layout/fragment_password_page" >
         <action
             android:id="@+id/action_passwordPage_to_greetingPage"
-            app:destination="@id/greetingPage" />
+            app:destination="@id/greetingPage"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/greetingPage"
@@ -31,6 +38,10 @@
         tools:layout="@layout/fragment_greeting_page" >
         <action
             android:id="@+id/action_greetingPage_to_homePage"
-            app:destination="@id/homePage" />
+            app:destination="@id/homePage"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 </navigation>
